@@ -39,7 +39,7 @@ end
 def play(songs)
     puts "Please enter a song name or number:"
     pick = gets.chomp
-        if pick.to_i > 0 && pick.to_i < songs.length
+        if pick.to_i > 0 && pick.to_i <= songs.length
         puts "Playing #{songs[pick.to_i-1]}"
         elsif songs.include?(pick)
         puts "Playing #{pick}"
@@ -54,18 +54,21 @@ end
 
 def run(songs)
     help
-    
+    loop do
     puts "Please enter a command:"
     input = gets.chomp
-    
-    case input
-        when "help"
-        help
-        when "list"
-        list(songs)
-        when "play"
-        play(songs)
-        when "exit"
-        exit_jukebox
+        case input
+            when "help"
+            help
+            when "list"
+            list(songs)
+            when "play"
+            play(songs)
+            when "exit"
+            exit_jukebox
+            else
+            help
+        end
+    break if input == "exit"
     end
 end
